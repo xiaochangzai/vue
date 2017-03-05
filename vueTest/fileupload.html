@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue实现文件上传</title>
+		
+		<!--<style>
+			*{display: block;padding: 0;border: none;list-style: none;margin: 0;}
+			#images{width: 50px;min-width: 50px;width: auto!important;display: table;text-align: center;margin: 0 auto;}
+		</style>-->
+		<script type="text/javascript" src="../vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+	
+		<img src=""/>
+		<form action="" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" id="file" value="选择文件" @change="chose()"/>
+			
+			<input type="button" value="上传" @click="upload()"/>
+		</form>
+				<div id="images">
+					<!--<img v-for="image in images" :src="image" alt="" />-->
+				</div>
+		</div>
+		<script>
+			new Vue({
+				el:"#app",
+				data:{
+					images:[] //这个imgs就是要上传的文件（多个文件）
+				},
+				methods:{
+					chose:function(event){
+						event = window.event || event;
+						var files = event.target.files || event.dataTransfer.files;
+						this.createImage(files);
+					},
+					upload:function(e){
+						e = window.event || e;
+						//ajax代码
+						$.ajax({
+							type:"post",
+							url:"",
+							async:true,
+							data:{
+								images:this.images
+							}
+						});
+					},
+					createImage:function(files){
+							var image = new Image();
+							var vm = this;
+						for(var i = 0; i < files.length; i++){
+							var reader = new FileReader();
+							reader.readAsDataURL(files[i]);
+							reader.onload = function(e){
+							vm.images.push(e.target.result);
+//							console.log(e.target.result);
+							console.log(vm.images);
+						}
+						}
+					}
+				},
+				ready:function(){
+					alert(123);
+				}
+			});
+		</script>
+	</body>
+</html>

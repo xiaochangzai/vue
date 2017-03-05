@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>参数特性</title>
+		<script type="text/javascript" src="vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="msg" lazy debounce="500" /> 
+			<!-- debounce 设置一个最小的延迟，不用每次变动都去更新-->
+			<hr />
+			<h2>{{msg}}</h2>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el:"#app",
+				data:{
+					msg:"Hello,world"
+				},
+				methods:{
+					
+				}
+			});
+		</script>
+	</body>
+</html>

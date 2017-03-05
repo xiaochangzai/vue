@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>计算属性</title>
+		<script type="text/javascript" src="../vue.js"></script>
+	</head>
+
+	<body>
+		<div id="example">
+			<input type="text" name="" id="" value="" v-model="a" />
+			<p>{{b}}</p>
+			<input type="text" v-model="firstname" />
+			<input type="text" name="" id="" value="" v-model="lastname" />
+			<p>{{fullname}}</p>
+		</div>
+		<script type="text/javascript">
+						var vm = new Vue({
+							el: '#example',
+							data:{
+								a:1,
+								firstname:"Foo",
+								lastname:"Bar",
+								 fulln ame: 'Foo Bar'
+							},
+							computed:{
+									//一个计算属性的getter
+									b:function(){
+										//this指向vm实例
+										return parseInt(this.a) + 1;
+									}
+								}
+						});
+						vm.$watch("firstname",function(val){
+							this.fullname = val + ' ' + this.lastname;
+						});
+						vm.$watch('lastname',function(val){
+							this.fullname = this.firstname + ' ' + val;
+						});
+		</script>
+	</body>
+
+</html>

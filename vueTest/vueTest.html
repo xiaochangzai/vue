@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>vueTest文档</title>
+		<script type="text/javascript" src="../vue.js"></script>
+	</head>
+	<body>
+		<div id="app">{{message}}
+			<input type="text" v-model="newTodo" v-on:keyup.enter="addTodo"/>
+			
+		<ul>
+			<li v-for="todo in todos">{{todo.text}}</li>
+		</ul>
+		
+		<a v-bind:href="url">百度1</a>
+		<a :href="url"></a>
+		
+		<button v-on:click="removeTodo($index)">X</button>
+		<p v-if="greeting">greeting</p>
+		<input type="button" name="" id="" value="disgreeting" v-on:click="disgreeting" />
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="app.js"></script>
+</html>
