@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Css过渡</title>
+    <!--<script src="../../vue.js"></script>-->
+    <style type="text/css">
+        /*  2. 然后为 .expand-transition、.expand-enter、和 .expand-leave添加css规则   */
+        /* 必须 */
+        .expend-transition{
+            transition: all .3s ease;
+            height: 30px;
+            background: #eee;
+            padding: 10px;
+        }
+    /* .expand-enter 进入的开始状态 */
+    /* .expand-enter 离开的结束状态 */
+        .expand-enter,.expand-leave{
+            height: 0px;
+            padding: 0 10px;
+            opacity: 0;
+        }
+        .test{
+            width: 100px;
+            height: 100px;
+            background: #EEEEEE;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="确定" @click="show = !show">
+        <hr>
+        //1.典型的css过渡像这样
+        <div class="css-transition test" v-if="show" transition="expand">{{testMessage}}</div>
+    </div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        data:{
+            show:true,
+            testMessage:"css过渡"
+        },
+        methods:{
+
+        }
+    });
+    // 另外，还可以提供javascript钩子
+    Vue.transition('expand',{
+        beforeEnter:function (el) {
+            el.textContent = "beforeEnter!";
+        },
+        enter:function (el) {
+            el.textContent = "Enter!";
+        },
+        afterEnter:function (el) {
+            el.textContent = "afterEnter!";
+//            alert("afterEnter");
+        },
+        enterCancelled:function (el) {
+            //handle cancellation
+
+        },
+        beforeLeave:function (el) {
+            el.textContent = "beforeLeave!";
+        },
+        leave:function (el) {
+            el.textContent = "leave!";
+        },
+        afterLeave:function (el) {
+            el.textContent = "afterLeave!";
+        },
+        leaveCancelled:function (el) {
+//            el.textContent = "leaveCancelled!";
+            //handel cancellation
+        }
+    });
+</script>
+</html>
