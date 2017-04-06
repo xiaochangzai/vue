@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	 <script src="../../过渡/js/vue.js"></script>
+	 <!-- <script type="text/javascript" src="vue2.0.js"></script> -->
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="确定" @click="parent">
+		<hr>
+		<hello ref="chil">
+				
+		</hello>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:"#box",
+			data:{},
+			methods:{
+				parent:function  () {
+					this.$refs.chil.chilFn("我是父元素传过来的");
+				}
+			},
+			components:{
+				'hello':{
+					template:"<p>{{msg}}</p>",
+					data:function  () {
+						return {
+							msg:"Hello,component!"
+						};
+					},
+					methods:{
+						chilFn:function (message) {
+							this.msg = message;
+						}
+					}
+				}
+			}
+		});
+	</script>
+</body>
+</html>

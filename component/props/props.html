@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用props传递数据</title>
+    <script src="../../过渡/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        camelCase 与 kebab-case
+        <br>
+        HTML 特性不区分大小写。名字形式为cameCase的prop用作特性时，kebab-case（短横线隔开）<br>
+        <child msg="hello" my-Message="Hello!"></child>
+        <h2>动态Props</h2>
+        <div>
+            <input type="text" v-model="parentMsg">
+            <br>
+            <child2 :my-message="parentMsg"></child2>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    //组件
+    Vue.component("child",{
+//        template:""
+        //声明props
+        props:["msg","myMessage"],
+        //prop 可以用在模板内
+        //可以用在this.msg设置
+        template:"<span>{{msg}} {{myMessage}}</span>"
+    });
+    Vue.component("child2",{
+
+        template:"<span>{{myMessage}}</span>"
+    });
+    //注册组件
+
+    //初始化
+new Vue({
+    el:"#app",
+    data:{
+        parentMsg:""
+    },
+    methods:{}
+});
+</script>
+</html>
